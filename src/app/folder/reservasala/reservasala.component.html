@@ -1,0 +1,40 @@
+<ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button ion-button [disabled]="isToday" (click)="today()" shape="round" fill="outline" color="danger">Hoy</ion-button>
+        <ion-button ion-button (click)="changeMode('month')" shape="round" fill="outline" color="#20589d">Vista Mes</ion-button>
+        <ion-button ion-button (click)="changeMode('week')" shape="round" fill="outline" color="#20589d">Vista Semana</ion-button>
+        <ion-button ion-button (click)="changeMode('day')" shape="round" fill="outline" color="#20589d">Vista Dia</ion-button>
+        <!--<button ion-button (click)="loadEvents()">Load Events</button>-->
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-list>
+    <ion-item lines="none">
+        <ion-label class="labelTitle">Elegimos sala</ion-label>
+        <ion-select interface="popover" (ionChange)="selectSala($event)">
+            <ion-select-option *ngFor="let sala of salas" value="{{sala.roomName}}"> {{ sala.roomName }} </ion-select-option>
+        </ion-select>
+    </ion-item>
+</ion-list>
+
+<ion-row>
+    <ion-col size="2">
+        <ion-button fill="clear" (click)="back()" [disabled]="isDisabled">
+            <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-col>
+    <ion-col size="8">
+        <ion-title>{{viewTitle}}</ion-title>
+    </ion-col>
+    <ion-col size="2">
+        <ion-button fill="clear" (click)="next()">
+            <ion-icon name="arrow-forward-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+
+<calendar #calendario [eventSource]="eventSource" [calendarMode]="calendar.mode" [startHour]="calendar.startHour" [endHour]="calendar.endHour" [startingDayWeek]="calendar.startingDayWeek" [startingDayMonth]="calendar.startingDayMonth" [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" [dateFormatter]="calendar.dateFormatter" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" [step]="calendar.step" [markDisabled]="markDisabled"
+    [showEventDetail]="calendar.showEventDetail" [noEventsLabel]="calendar.noEventsLabel" [timeInterval]="30" [lockSwipes]="calendar.lockSwipes" (onRangeChanged)="onRangeChanged($event)" [queryMode]="calendar.queryMode">
+</calendar>
