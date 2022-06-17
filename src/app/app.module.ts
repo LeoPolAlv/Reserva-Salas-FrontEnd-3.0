@@ -10,6 +10,7 @@ import { LoginPageModule } from './login/login.module';
 import { Storage } from '@ionic/storage';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './Interceptors/interceptor.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,9 @@ import { InterceptorService } from './Interceptors/interceptor.service';
     AppRoutingModule,
     LoginPageModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
   ],
   providers: [
     Storage,

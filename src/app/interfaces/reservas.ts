@@ -11,3 +11,12 @@ export interface Reservas {
     fechaReserva: string;
     fechaHasta: string;
 }
+
+export interface AltaReserva {
+    roomName?: string;
+	dasUser?: string; 
+	fechaReserva?: Date;
+    fechaHasta?: Date;
+    titulo?: string;
+    descripcion?: string;
+}

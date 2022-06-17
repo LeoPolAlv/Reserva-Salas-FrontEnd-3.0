@@ -62,7 +62,7 @@ export class LoginPage implements OnInit {
                             .then();
                       await this.tokenService.validaToken();
                       await this.router.navigateByUrl('folder/reservasala');
-                      console.log('Todo OK en el login');
+                      //console.log('Todo OK en el login');
                     },
                      err => {
                       let errorDesc= err.status;

@@ -16,7 +16,7 @@
     <app-reservasala class="container" *ngIf="folderID === 1"></app-reservasala>
     <app-newreserva class="container" *ngIf="folderID === 2"></app-newreserva>
 
-    <div class="container" *ngIf="folderID!== (1&&2)">
+    <div class="container" *ngIf="folderID!==1 && folderID!==2">
         <strong class="capitalize">{{ folder }}</strong>
         <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
     </div>

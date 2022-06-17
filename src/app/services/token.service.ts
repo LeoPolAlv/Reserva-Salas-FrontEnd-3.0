@@ -15,7 +15,7 @@ export class TokenService {
 
   //Declaramos un evento que se lanzara cada vez que se cree una nueva reserva.
   public nuevoToken: EventEmitter<string> = new EventEmitter<string>();
-  public logeado: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public logeado: EventEmitter<string> = new EventEmitter<string>();
 
   get tokenConecct(){
     return this.token;
@@ -65,11 +65,12 @@ export class TokenService {
   eliminarToken(){
     this.nativeStorage.remove('reservasala');
     this.token = '';
-    this.logeado.emit(false);
+    this.logeado.emit('');
   }
 
   async validaToken(){
     this.token = await this.nativeStorage.get('reservasala');
+    //this.getToken().then( (token) => this.token = token);
     if (this.token){
       this.isLogged = true;
       //console.log('logged true ');
@@ -79,7 +80,7 @@ export class TokenService {
     }
 
     //console.log('Islogged?: ', this.isLogged);
-    this.logeado.emit(this.isLogged);
+    this.logeado.emit(this.token);
     return this.isLogged;
   }
 

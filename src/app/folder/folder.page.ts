@@ -15,7 +15,7 @@ export class FolderPage implements OnInit {
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('ID:' , this.folder);
+    //console.log('ID:' , this.folder);
 
     switch (this.folder) {
       case 'reservasala':

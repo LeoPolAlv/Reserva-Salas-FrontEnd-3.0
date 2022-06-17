@@ -2,16 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 //import { NavController } from '@ionic/angular';
 import { CalendarMode, QueryMode, Step } from 'ionic2-calendar/calendar';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
-import { MonthViewComponent } from 'ionic2-calendar/monthview';
-import { WeekViewComponent } from 'ionic2-calendar/weekview';
-import { DayViewComponent } from 'ionic2-calendar/dayview';
-import { ReservasService } from 'src/app/services/reservas.service';
-import { Reservas } from '../../interfaces/reservas';
-import { Sala } from 'src/app/interfaces/sala';
 import { SalasService } from 'src/app/services/salas.service';
-import { Observable } from 'rxjs';
-import { OficinasService } from 'src/app/services/oficinas.service';
-import { Oficina } from 'src/app/interfaces/oficina';
 import { Eventos } from 'src/app/interfaces/share';
 
 
@@ -40,8 +31,6 @@ export class ReservasalaComponent implements OnInit {
 
   public isToday:boolean;
 
-  //TODO: formatear las columnas de la diferentes vistas que hay en el calendar
-  //FIXME: 
   public calendar = {
       mode: 'month' as CalendarMode,
       step: 30 as Step,
@@ -128,7 +117,7 @@ export class ReservasalaComponent implements OnInit {
       private salaService: SalasService,
       //private oficinaService: OficinasService
       ) { 
-        console.log('Constructor de Reserva Sala');
+        //console.log('Constructor de Reserva Sala');
         this.cargarSalas();
                     
             /*this.oficinaService.obtenerOficinas()
@@ -140,11 +129,11 @@ export class ReservasalaComponent implements OnInit {
       }
 
   ionViewDidEnter(){
-      console.log('ionViewDidEnter Reserva Sala');
+      //console.log('ionViewDidEnter Reserva Sala');
   }
 
   ngOnInit() {
-      console.log('On Init Reserva Sala');
+      //console.log('On Init Reserva Sala');
   }
 
   async cargarSalas(){
@@ -159,6 +148,7 @@ export class ReservasalaComponent implements OnInit {
       //console.log('Loadevents Entrada: ', reservas);
       //this.eventSource = this.createRandomEvents();
       this.eventSource = this.cargarEventos(reservas);
+      //console.log('EventSource: ', this.eventSource);
   }
 
   cargarEventos(reservas): Eventos[] {
@@ -166,7 +156,7 @@ export class ReservasalaComponent implements OnInit {
     //console.log('reservas que llegan: ',reservas);
     let eventos: any[] = [];
     reservas.forEach(reserva => {
-        console.log('Reserva: ',reserva);
+        //console.log('Reserva: ',reserva);
         //console.log('fecha desde: ',reserva.fechaReserva);
         //console.log('fecha hasta: ',reserva.fechaHasta);
         const startTimeAux = new Date(reserva.fechaReserva);
@@ -190,7 +180,7 @@ export class ReservasalaComponent implements OnInit {
   }
 
   onViewTitleChanged(title: string) {
-      console.log(title);
+      //console.log('Tiulo onViewTitleChanged: ',title);
 
        // console.log('es disabled');
       if(this.isDisabled){
@@ -201,6 +191,7 @@ export class ReservasalaComponent implements OnInit {
       }
 
       this.viewTitle = title;
+      this.loadEvents(this.eventoReservas);
   }
 
   onEventSelected(event) {
@@ -210,7 +201,6 @@ export class ReservasalaComponent implements OnInit {
   changeMode(mode) {
       //console.log('Change Mode: ', mode);
       this.calendar.mode = mode;
-      this.loadEvents(this.eventoReservas);
   }
 
   /*reloadSource(start, end){
@@ -223,7 +213,7 @@ export class ReservasalaComponent implements OnInit {
 
   onTimeSelected(ev) {
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-          (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+          (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled); 
   }
 
   onCurrentDateChanged(event:Date) {
@@ -275,7 +265,7 @@ export class ReservasalaComponent implements OnInit {
   }
 */
  onRangeChanged(ev) {
-      console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+      //console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
       if(this.fechaPasada(new Date(ev.startTime))) {
         // console.log('es disabled');
          this.isDisabled = true;
@@ -296,9 +286,9 @@ export class ReservasalaComponent implements OnInit {
   fechaPasada = (date:Date) => {
     var current = new Date();
     current.setHours(0,0,0);
-    console.log('Date que paso a la funcion: ', date);
-    console.log('Date current: ', current);
-    console.log('resultado: ', date < current);
+    //console.log('Date que paso a la funcion: ', date);
+    //console.log('Date current: ', current);
+    //console.log('resultado: ', date < current);
     return date < current;
   }
 
@@ -323,9 +313,9 @@ export class ReservasalaComponent implements OnInit {
       this.resultado = this.salas.filter( salaAux => {
           return salaAux.roomName == sala
       })
-      console.log('Salidas despues filtro: ', this.resultado);
+      //console.log('Salidas despues filtro: ', this.resultado);
       this.resultado[0].reserves.forEach(reserva => {
-          console.log('elemento leido: ', reserva.idReserva); 
+          //console.log('elemento leido: ', reserva.idReserva); 
           //this.sala = reservas.roomName; 
           //reservas.reserves.forEach(reserva => {
           //    console.log('Reserva a ingresar: ', reserva);

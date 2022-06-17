@@ -1,0 +1,77 @@
+<ion-header class="ion-no-border" class="ion-text-center">
+    <ion-toolbar>
+        <ion-title text-center>Alta Reserva Sala</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <!--<form [formGroup]="altaReservaForm" (submit)="altaReserva()">-->
+        <ion-grid>
+            <ion-row>
+                <!-- Pais Seleccionado-->
+                <ion-col>
+                    <ion-item lines="none" class="ion-text-center">
+                        <!--<ion-label class="etq-label">Pais: </ion-label>-->
+                        <ion-input [value]="encabezadoReserva"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="5">
+                    <ion-item>
+                        <ion-label position="floating">Asunto</ion-label>
+                        <ion-input #titulo inputmode="text" (ionChange)="envioTitulo(titulo.value)"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label position="floating">Descripción</ion-label>
+                        <ion-input #descripcion inputmode="text" (ionChange)="envioDesc(descripcion.value)"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <!-- Oficina Seleccionada -->
+                <!--<ion-col size="4">
+                    <ion-item lines="none" disabled="true">
+                        <ion-label class="etq-label">Oficina: </ion-label>
+                        <ion-input [value]="oficina"></ion-input>
+                    </ion-item>
+                </ion-col>-->
+
+                <!-- Sala Seleccionada -->
+                <!--<ion-col size="4">
+                    <ion-item lines="none" disabled=true>
+                        <ion-label class="etq-label">Sala: </ion-label>
+                        <ion-input [value]="sala"></ion-input>
+                    </ion-item>
+                </ion-col>-->
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="ion-text-center">Reserva Desde</ion-label>
+                    </ion-item>
+                    <ion-datetime readonly="true" [firstDayOfWeek]="1" [value]="fechaDesde"></ion-datetime>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item lines="full">
+                        <ion-label class="ion-text-center">Reserva Hasta</ion-label>
+                    </ion-item>
+                    <ion-datetime #fechaHasta [min]="fechaDesde" [max]="fechaMax" [minuteValues]="minuteValues" [firstDayOfWeek]="1" [value]="fechaDesde" [hourValues]="hourValues" (ionChange)="formateoFechaHasta(fechaHasta.value)"></ion-datetime>
+                </ion-col>
+            </ion-row>
+            <!-- Fecha y hora desde de la reserva-->
+
+            <!-- boton para reservar una sala-->
+            <ion-row>
+                <ion-col>
+                    <ion-item lines="none" class="ion-align-items-center">
+                        <ion-button (click)="closeModel()">Confirmo Reserva</ion-button>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <!--</form>-->
+    </div>
+</ion-content>

@@ -1,4 +1,4 @@
-<form [formGroup]="altaReservaForm" (submit)="altaReserva()">
+<form [formGroup]="altaReservaForm">
     <ion-grid>
         <ion-row>
             <!-- Selecion del Pais-->
@@ -48,21 +48,24 @@
                 </ion-button>
             </ion-col>
         </ion-row>
-        <!--<ion-row>
-            <ion-col>-->
-        <!--</ion-col>
-              </ion-row>-->
 
         <!-- boton para reservar una sala-->
         <ion-row>
             <ion-item lines="none">
-                <ion-button block type="submit" class="botonReserva" shape="round" [disabled]="altaReservaForm.invalid">
+                <ion-button block type="submit" class="botonReserva" shape="round" [disabled]="altaReservaForm.invalid" (click)="altaReserva()">
                     Reservar
                 </ion-button>
             </ion-item>
+            <!--  <ion-item lines="none">
+                <ion-button block type="reset" class="botonReserva" shape="round" [disabled]="altaReservaForm.invalid" (click)="cancelaOperacion()">
+                    Cancelar
+                </ion-button>
+            </ion-item>-->
         </ion-row>
     </ion-grid>
 </form>
+
+
 <calendar #calendario [eventSource]="eventSource" [calendarMode]="calendar.mode" [startHour]="calendar.startHour" [endHour]="calendar.endHour" [startingDayWeek]="calendar.startingDayWeek" [startingDayMonth]="calendar.startingDayMonth" [currentDate]="calendar.currentDate"
     [dateFormatter]="calendar.dateFormatter" (onTitleChanged)="onViewTitleChanged($event)" [markDisabled]="markDisabled" (onTimeSelected)="onTimeSelected($event)" [timeInterval]="30">
 </calendar>
